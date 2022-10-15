@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% load static %} {% block main %}
+<section class="banner">
+	<div class="banner-inner dark-overlay">
+		<div class="banner-slider__item">
+        <div class="text-wrap text-center">
+         <h2> Fun Olympic</h2>
+        </div>
+		</div>
+	</div>
+</section>
+
+<section class="card-video__block py-3 py-lg-4">
+  <div class="container">
+    <header class="text-center mb-3 mb-lg-4 mb-xl-5">
+      <h2>Videos</h2>
+    </header>
+    <div class="row mb-3">
+      {% for game in games %}
+      <div class="col-lg-4 col-md-6 mb-2 mb-sm-3 mb-md-4 mb-xl-0">
+        <div class="card-video__wrapper">
+          <div class="card-video__media">
+            <picture>
+              <img width="500" height="325" loading="lazy" src="{{ game.thumbnail_image.url }}" alt="Sinai Documentaries"/>
+            </picture>
+            <a href="{{ game.video_url }}" class="btn-play" data-fancybox=""><i class="fa fa-play"></i></a>
+          </div>
+          <div class="card-video__title">
+            <h3 class="h5 mb-2 mb-lg-3">{{ game.title }}</h3>
+            <div class="card-video__footer">
+              <h4 class="h6">{{ game.category }}</h6>
+              <small class="upload-date">{{ game.created_at|date:"M d, Y" }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% comment %} <div class="btn-wrap text-center pt-3 pt-lg-4">
+      <a href="#" class="btn btn-primary btn-dark px-3">Load More</a>
+    </div> {% endcomment %}
+  </div>
+</section>
+{% endblock main %}
